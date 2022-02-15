@@ -31,14 +31,37 @@ function done() {
   console.log("Job's Done!");
 }
 function countdown(num, callback) {
-if (num === 0) {
-  callback();
-} else {
- timeout = setTimeout(function() {
-countdown(num, callback);
- }, 1000);
- console.log(num);
- num--;
+  if (num === 0) {
+    callback();
+  } else {
+    timeout = setTimeout(function () {
+      countdown(num, callback);
+    }, 1000);
+    console.log(num);
+    num--;
+  }
 }
-}
-countdown(20, done);
+// countdown(20, done);
+
+let lunchTime = true;
+const orderMeSomeFood = () => {
+  return new Promise((resolve, reject) => {
+    if (lunchTime) {
+      let food = {
+        lunch: "falafel",
+        drink: "falafel juice",
+      };
+      resolve(food);
+    } else {
+      let err = new Error("error!");
+      reject(err);
+    }
+  });
+};
+orderMeSomeFood()
+  .then((value) => {
+    console.log(value);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
