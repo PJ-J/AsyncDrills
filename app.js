@@ -25,5 +25,20 @@ function getWords() {
     logMessage("1 sec later");
   }, 6000);
 }
+// getWords();
 
-getWords();
+function done() {
+  console.log("Job's Done!");
+}
+function countdown(num, callback) {
+if (num === 0) {
+  callback();
+} else {
+ timeout = setTimeout(function() {
+countdown(num, callback);
+ }, 1000);
+ console.log(num);
+ num--;
+}
+}
+countdown(20, done);
